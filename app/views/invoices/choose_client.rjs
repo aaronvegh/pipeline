@@ -1,0 +1,2 @@
+page['client_contacts'].replace_html :partial=>"client_contacts", :locals => { :contact => @contact }
+page['client_jobs'].replace_html :partial=>"client_jobs", :locals => { :jobs => @jobs }

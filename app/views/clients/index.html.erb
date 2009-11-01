@@ -1,0 +1,31 @@
+<div id="box66" class="client">
+  <div id="box66_top" class="client"></div>
+  <div id="box66_content" class="client">
+    <h1>Clients</h1>
+    <p class="new_link"><%= link_to "[+] New Client", {:controller=>"clients", :action=>"new"}, :popup=>['Create new client', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
+    <% if @clients %>
+    <table>  
+      <tr>
+        <th>Company</th>
+        <th>Billed Total</th>
+        <th>Outstanding</th>
+      </tr>
+    <% @clients.each do |c| %>
+      <tr id="client_<%=c.id%>" onclick="<%= remote_function(:url=>{:controller=>"clients", :action=>"contacts", :id=>c.id}) %>">
+        <td><%= c.company %></td>
+        <td><%= number_to_currency(c.billed_total) %></td>
+        <td><%= number_to_currency(c.outstanding) %></td>
+      </tr>
+    <% end %>
+    </table>
+    <% end %>    
+  </div>
+  <div id="box66_bottom" class="client"></div>
+</div>
+
+<div id="box33">
+  <% if @contacts %>
+    <%= render :partial=>"contacts", :locals=>{:contacts=>@contacts, :client=>@client}%>
+  <% end %>
+</div>
+<br style="clear:both" />

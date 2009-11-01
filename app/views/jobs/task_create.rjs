@@ -1,0 +1,1 @@
+page.insert_html :bottom, :newtasks, :partial=>"task", :locals=>{:task=>@task}

@@ -1,0 +1,3 @@
+<% if @jobs %>
+	<%= collection_select(:job, :id, @jobs, :id, :description, {:prompt=>"Choose job..."} ) %>
+<% end %>

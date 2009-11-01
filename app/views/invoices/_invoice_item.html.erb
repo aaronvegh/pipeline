@@ -1,0 +1,7 @@
+<tr id="iitem_<%= iitem.id %>">
+	<td><%= text_field_tag("iitem["+iitem.id.to_s+"][item]", iitem.item, :style=>"width:115px") %></td>
+	<td><%= text_field_tag("iitem["+iitem.id.to_s+"][description]", iitem.description, :style=>"width:245px") %></td>
+	<td><%= text_field_tag("iitem["+iitem.id.to_s+"][unitcost]", iitem.unitcost, :style=>"width:85px") %></td>
+	<td><%= text_field_tag("iitem["+iitem.id.to_s+"][units]", iitem.units, :style=>"width:25px") %></td>
+	<td><%= link_to_remote image_tag("/images/cancel.png"), :url=>{:controller=>"invoices", :action=>"remove_invoiceitem", :id=>iitem.id} %></td>
+</tr>

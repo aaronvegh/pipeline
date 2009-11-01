@@ -1,0 +1,1 @@
+<%= c.collection_select(:id, Contact.find_all_by_client_id(client), :id, :fullname, {:prompt=>"Choose contact..."} ) %>

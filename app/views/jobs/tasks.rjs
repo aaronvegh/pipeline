@@ -1,0 +1,1 @@
+page['box33'].replace_html :partial=>"tasks", :locals=>{:tasks=>@tasks, :job=>@job}

@@ -1,0 +1,61 @@
+<div class="home_box" id="past">
+        <div class="title"></div>
+        <div class="body">
+          <p><%= number_to_currency(Invoice.all_owing)%> outstanding from <%= @invoices.size%> invoice<%= "s" if @invoices.size > 1 %></p>
+          <table>
+          <% if @invoices %>
+            <% @invoices.each do |i| %>
+            <tr>
+              <td><%= link_to i.client.company, :controller=>"invoices", :action=>"index", :id=>i.id %></a></td>
+              <td><%= distance_of_time_in_words(Time.now - i.invoice_date)%></td>
+              <td class="money"><%= number_to_currency(i.invoice_total)%></td>
+            </tr>
+            <% end %>
+          <% end %>
+          </table>
+        </div>
+        <div class="foot"></div>
+      </div>
+      
+      <div class="home_box" id="present">
+        <div class="title"></div>
+        <div class="body">
+          <p><%= number_to_currency(Job.active_total)%> pending on <%= @jobs.size %> active job<%= "s" if @jobs.size > 1 %></p>
+          <table>
+          <% if @jobs %>
+            <% @jobs.each do |j| %>
+              <% complete = j.tasks.find_all_by_status_flag("completed") %>
+              <% num_complete = complete.size.nil? ? 0 : complete.size %>
+              <% task_text =  num_complete.to_s + " of " + j.tasks.size.to_s %>
+            <tr>
+              <td><%= j.client.company %></td>
+              <td><%= link_to task_text, :controller=>"jobs", :action=>"index", :id=>j.id %></td>
+              <td class="money"><%= number_to_currency(j.dollar_value)%></td>
+            </tr>
+            <% end %>
+          <% end %>
+          </table>
+        </div>
+        <div class="foot"></div>
+      </div>
+      
+      <div class="home_box" id="future">
+        <div class="title"></div>
+        <div class="body">
+          <p><%= number_to_currency(Job.estimate_value)%> potential from <%= Job.estimates.size unless Job.estimates.size.nil? %> prospect<%= "s" if Job.estimates.size > 1 %></p>
+
+          <table>
+          <% if @estimates %>
+            <% @estimates.each do |e| %>
+            <tr>
+              <td><%= e.job.client.company %></td>
+              <td><%= link_to "Estimate", {:controller=>"jobs", :action=>"edit", :id=>e.job.id}, :popup=>['Edit job', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></a></td>
+              <td class="money"><%= number_to_currency(e.dollar_value)%></td>
+            </tr>
+            <% end %>
+          <% end %>
+          </table>
+        </div>
+        <div class="foot"></div>
+      </div>
+      <br style="clear:both" />

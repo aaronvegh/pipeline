@@ -1,0 +1,30 @@
+<% remote_form_for :jobs, :url=>{:action=>"create"} do |c| %>
+<h1>Create new job</h1>
+
+<div id="popup_container">
+	<h3>Job Specs</h3>
+	<p>Client</p>
+	<p><%= collection_select(:client, :id, Client.find(:all), :id, :company, {:prompt=>"Choose a client..."}, {:style=>"float:none"}) %></p>
+	
+	<p>Description</p>
+	<p><%= c.text_field :description, :size=>55 %>
+	
+	<p>Dollar Value</p>
+	<p><%= c.text_field :dollar_value, :size=>6 %></p>
+
+	<br style="clear:both" />
+	<h3>Estimate</h3>
+	<% fields_for :estimate do |e| %>
+	<p>Title</p>
+	<p><%= e.text_field :title %></p>
+	
+	<p>Content</p>
+	<p><%= e.text_area :content, {:rows=>5, :cols=>"55"} %></p>
+	<% end %>
+	
+	<br style="clear:both" />
+	<%= hidden_field_tag "jobs[status]", "proposed" %>
+	<%= submit_tag("Create Job") %>
+	
+</div>
+<% end %>

@@ -1,0 +1,58 @@
+<% remote_form_for @invoice, :url=>{:action=>"update"} do |inv| %>
+<h1>Edit invoice <%= @invoice.id %></h1>
+
+<div id="popup_container">
+	<h3>Status</h3>
+	<p><%= inv.radio_button(:status, :pending, {:checked=>@invoice.status=="pending"})%> Pending
+	<%= inv.radio_button(:status, :paid, {:checked=>@invoice.status=="paid"})%> Paid</p>
+	<br style="clear:both" />
+	<h3>Set invoice date</h3>
+	<%= calendar_date_select_tag "invoice[invoice_date]", @invoice.invoice_date %>
+	<br style="clear:both" /><br style="clear:both" />
+	<h3>Choose a client, contact and job</h3>
+	<% fields_for @invoice.client do |c| %>
+	<p><%= c.collection_select(:id, Client.find(:all), :id, :company, {:prompt=>"Choose a client..."}, {:onchange=>remote_function(:url=>{:action=>:choose_client}, :with=>"'client[id][]=' + this.value") } ) %></p>
+	<% end %>
+	<% fields_for @invoice.contact do |c| %>
+	<div id="client_contacts"><p><%= render :partial=>"client_contacts_update", :locals=>{:c=>c, :client=>@invoice.client.id}%></p></div>
+	<% end %>
+	<% fields_for @invoice.job do |j| %>
+		<div id="client_jobs"><p><%= render :partial=>"client_jobs_update", :locals=>{:j=>j, :client=>@invoice.client.id}%></p></div>
+	<% end %>
+	<br style="clear:both" /><br style="clear:both" />
+	<h3>Add invoice items</h3>
+	<p id="new_invoice_link"><%= link_to_remote "[+] Add New Item", :url=>{:controller=>"invoices", :action=>"new_invoice_item" } %></p>
+
+	<table id="invoice_items">
+		<tr>
+			<th style="width:115px;">Item</th>
+			<th style="width:245px;">Description</th>
+			<th style="width:85px;">Unit Cost</th>
+			<th style="width:25px;">Units</th>
+			<th></th>
+		</tr>
+		<% if @invoice.invoiceitems %>
+		<% @invoice.invoiceitems.each do |ii| %>
+			<%= render :partial=>"invoice_item", :locals=>{ :iitem => ii } %>
+		<% end %>
+		<% end %>
+	</table>
+	
+	<h3>Specify taxes</h3>
+	
+	<% if @taxes %>
+		<% @taxes.each do |t| %>
+			<% matches = @invoice.tax.find_all {|tx| tx.id == t.id } %>
+			<% if matches.size > 0 %>
+				<p><%= check_box_tag "tax[]", t.id, true %> <%= t.tax %></p>
+			<% else %>
+				<p><%= check_box_tag "tax[]", t.id %> <%= t.tax %></p>
+			<% end %>
+		<% end %>
+	<% end %>
+	<br style="clear:both" />
+	<%= hidden_field_tag(:id, @invoice.id)%>
+	<%= submit_tag("Update Invoice") %>
+	
+</div>
+<% end %>

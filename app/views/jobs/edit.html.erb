@@ -1,0 +1,34 @@
+<% remote_form_for @job, :url=>{:action=>"update"} do |c| %>
+<h1><%= @job.description %></h1>
+
+<div id="popup_container">
+  <h3>Job Specs</h3>
+  <p>Client</p>
+  <p><%= c.collection_select(:client_id, Client.find(:all), :id, :company, {:prompt=>"Choose a client..."}, {:style=>"float:none"}) %></p>
+  
+  <p>Status</p>
+  <p><%= c.select(:status, job_statuses) %>
+  
+  <p>Description</p>
+  <p><%= c.text_field :description, :size=>55 %>
+  
+  <p>Dollar Value</p>
+  <p><%= c.text_field :dollar_value, :size=>6 %></p>
+
+  <br style="clear:both" />
+  <% fields_for @estimate do |e| %>
+    <h3>Estimate</h3>
+    <p>Title</p>
+    <p><%= e.text_field :title %></p>
+  
+    <p>Content</p>
+    <p><%= e.text_area :content, {:rows=>5, :cols=>"55"} %></p>
+    <%= e.hidden_field :id %>
+  <% end %>
+  
+  <br style="clear:both" />
+  <%= c.hidden_field :id %>
+  <%= submit_tag("Save Job") %>
+  
+</div>
+<% end %>

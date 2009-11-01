@@ -1,0 +1,10 @@
+<tr>
+	<td id="task_<%=t.id%>">
+		<% if task.status_flag == "open" %>
+			<%= link_to_remote image_tag("/images/unchecked.jpg"), :url=>{:action=>"task_update", :id=>task.id } %>
+		<% else %>
+			<%= link_to_remote image_tag("/images/checked.jpg"), :url=>{:action=>"task_update", :id=>task.id } %>
+		<% end %>
+	</td>
+	<td><%= t.task %></td>
+</tr>

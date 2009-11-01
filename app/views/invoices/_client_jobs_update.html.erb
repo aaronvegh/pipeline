@@ -1,0 +1,1 @@
+<%= j.collection_select(:id, Job.find_all_by_client_id(client), :id, :description, {:prompt=>"Choose job..."} ) %>

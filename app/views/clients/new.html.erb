@@ -1,0 +1,42 @@
+<% form_for :client, :url=>{:action=>"create"} do |c| %>
+<h1>Create new client</h1>
+
+<div id="popup_container">
+	<h3>Client Name</h3>
+	<%= c.text_field :company %>
+
+	<br style="clear:both" /><br style="clear:both" />
+	<h3>Address</h3>
+	
+	<table id="invoice_items">
+		<tr>
+			<th>Street 1</th>
+			<td><%= c.text_field :street1 %></td>
+		</tr>
+		<tr>
+			<th>Street 2</th>
+			<td><%= c.text_field :street2 %></td>
+		</tr>
+		<tr>
+			<th>City</th>
+			<td><%= c.text_field :city %></td>
+		</tr>
+		<tr>
+			<th>Province/State</th>
+			<td><%= c.text_field :province %></td>
+		</tr>
+		<tr>
+			<th>Postal/Zip Code</th>
+			<td><%= c.text_field :postal %></td>
+		</tr>
+		<tr>
+			<th>Country</th>
+			<td><%= c.text_field :country %></td>
+		</tr>
+	</table>
+	
+	<br style="clear:both" />
+	<%= submit_tag("Create Client", {:onclick=>"refreshParent()"}) %>
+	
+</div>
+<% end %>

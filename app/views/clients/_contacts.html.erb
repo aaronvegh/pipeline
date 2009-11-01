@@ -1,0 +1,18 @@
+<ul class="object_options">
+  <li><%= link_to "Edit Client", {:controller=>"clients", :action=>"edit", :id=>client.id}, :popup=>['Edit client', 'height=500,width=600,resizable=yes,scrollbars=yes']%></li>
+  <li><%= link_to "Delete Client", {:controller=>"clients", :action=>"delete", :id=>client.id}, :confirm=>"Are you sure you want to do this? You can't get it back." %></li>
+  <li><%= link_to "Add Contact", {:controller=>"clients", :action=>"contact_add", :id=>client.id}, :popup=>['Create new contact', 'width=600,height=550,resizable=yes,scrollbars=yes'] %></li>
+<br style="clear:both" />
+</ul>
+
+<h2><%= client.company %> Contacts</h2>
+<% if contacts %>
+<table class="invoices">
+  <% contacts.each do |c| %>
+  <tr>
+    <td class="invoiceitems"><%= c.fname %> <%= c.lname %></td>
+    <td class="invoiceitems"><%= link_to "Edit", {:action=>"contact_edit", :id=>c.id}, :popup=>['Edit client', 'width=600,height=550,resizable=yes,scrollbars=yes'] %>
+  </tr>
+  <% end %>
+</table>
+<% end %>

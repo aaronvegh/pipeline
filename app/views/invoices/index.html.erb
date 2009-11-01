@@ -1,0 +1,68 @@
+<div id="box66" class="invoice">
+	<div id="box66_top" class="invoice"></div>
+	<div id="box66_content" class="invoice">
+		<h1>Invoices</h1>
+		<p class="new_link"><%= link_to "[+] New Invoice", {:controller=>"invoices", :action=>"new"}, :popup=>['Create new invoice', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
+		<% if @invoices %>
+		<table>	
+			<tr>
+				<th width="70">Invoice #</th>
+				<th>Days</th>
+				<th>Company</th>
+				<th width="100" style="text-align:right">Invoice Amt</th>
+				<th width="100" style="text-align:right">Outstanding</th>
+			</tr>
+		<% @invoices.each do |i| %>
+			<tr id="invoice_<%=i.id%>" onclick="<%= remote_function(:url=>{:controller=>"invoices", :action=>"show", :id=>i.id}) %>">
+				<td><%= i.id %></td>
+				<td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %>
+				<td><%= i.client.company unless i.client.nil? %></td>
+				<td class="money"><%= number_to_currency(i.invoice_total) %>
+				<td class="money"><%= i.status == "paid" ? number_to_currency(0):number_to_currency(i.invoice_total) %>
+			</tr>
+		<% end %>
+		</table>
+		<% end %>		
+	</div>
+	<div id="box66_bottom" class="invoice"></div>
+</div>
+
+<div id="box33">
+	<% if @active %>
+		<%= render :partial=>"invoice", :locals=>{:invoice=>@active}%>
+	<% else %>
+		<h2>Taxes</h2>
+		<% if @taxes %>
+		<table>
+			<% @taxes.each do |t| %>
+			<% form_for t, :url=>{:action=>"tax_update"} do |tax| %>
+				<tr>
+					<td><%= tax.text_field :tax, :size=>15 %></td>
+					<td><%= tax.text_field :rate, :size=>3 %></td>
+					<td><%= link_to image_tag("/images/cancel.png"), {:action=>"tax_delete", :id=>t.id}, :confirm=>"Are you sure you want to delete this? You can't get it back." %>
+					<%= tax.hidden_field :id %>
+					<%= image_submit_tag("/images/accept.png", {:style=>"border:0px;position:relative;top:4px"}) %></td>
+				</tr>
+			<% end %>
+			<% end %>
+		</table>
+		<% end %>
+		<h2 style="margin-top:10px;">Add new tax</h2>
+		<% form_for :tax, :url=>{:action=>"tax_create"} do |tax| %>
+		<table>
+			<tr>
+				<td>Tax</td>
+				<td>Rate</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><%= tax.text_field :tax, :size=>15 %></td>
+				<td><%= tax.text_field :rate, :size=>3 %></td>
+				<td><%= submit_tag("Submit") %></td>
+			</tr>
+		</table>
+		<% end %>
+		
+	<% end %>
+</div>
+<br style="clear:both" />

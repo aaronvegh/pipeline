@@ -1,0 +1,2 @@
+page << "window.opener.location.href = '/invoices/index/#{@i.id}'"
+page << "window.close();"

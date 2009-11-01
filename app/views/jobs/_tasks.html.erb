@@ -1,0 +1,29 @@
+<ul class="object_options">
+	<li><%= link_to "Edit Job", {:controller=>"jobs", :action=>"edit", :id=>job.id}, :popup=>['Edit job', 'height=500,width=600,resizable=yes,scrollbars=yes']%></li>
+	<li><%= link_to "Delete Job", {:controller=>"jobs", :action=>"delete", :id=>job.id}, :confirm=>"Are you sure you want to do this? You can't get it back." %></li>
+	<% if job.estimate %>
+		<li><%= link_to "Print Estimate", {:controller=>"jobs", :action=>"print_estimate", :id=>job.id}, :popup=>['Print estimate', 'height=500,width=600,resizable=yes,scrollbars=yes']%>
+	<% end %>
+<br style="clear:both" />
+</ul>
+
+<h2>Tasks for <%= job.description[0..25]%>..</h2>
+<h2 style="margin-top:10px;">Add new task</h2>
+<% remote_form_for :task, :url=>{:action=>"task_create"} do |task| %>
+<table>
+	<tr>
+		<td><%= task.text_field :task, :size=>25 %></td>
+		<td>
+			<%= hidden_field_tag("job_id", job.id) %>
+			<%= submit_tag("Submit") %></td>
+	</tr>
+</table>
+<% end %>
+
+<% if tasks %>
+<table id="newtasks">
+	<% tasks.each do |t| %>
+		<%= render :partial=>"task", :locals=>{:task=>t} %>
+	<% end %>
+</table>
+<% end %>

@@ -1,0 +1,31 @@
+<ul class="object_options">
+	<li><%= link_to "Print", :controller=>"invoices", :action=>"print", :id=>invoice.id %></li>
+	<li><%= link_to "Edit", {:controller=>"invoices", :action=>"edit", :id=>invoice.id}, :popup=>['Edit invoice', 'height=580,width=600,resizable=yes,scrollbars=yes'] %></li>
+	<li><%= link_to "Delete", {:controller=>"invoices", :action=>"delete", :id=>invoice.id} %></li>
+<br style="clear:both" />
+</ul>
+
+<h2>#<%= invoice.id %> / <%= invoice.client.company %></h2>
+<p><%= invoice.contact.fname %> <%= invoice.contact.lname %></p>
+<% items = invoice.invoiceitems %>
+<% if items %>
+<table class="invoices">
+	<% items.each do |i| %>
+	<tr>
+		<td colspan="3" class="description"><%= i.description[0..55]%></td>
+	</tr>
+	<tr>
+		<td class="invoiceitems"><%= i.units %></td>
+		<td class="money invoiceitems"><%= number_to_currency(i.unitcost) %></td>
+		<td class="money invoiceitems"><%= number_to_currency(i.unitcost * i.units) %>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="2" class="money">Taxes</td>
+		<td class="money"><%= number_to_currency(invoice.invoice_taxes) %></td>
+	<tr>
+		<td colspan="2" class="money">Total</td>
+		<td class="money"><%= number_to_currency(invoice.invoice_total) %></td>
+	</tr>
+</table>
+<% end %>
