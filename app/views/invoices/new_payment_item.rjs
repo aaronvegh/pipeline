@@ -1,0 +1,1 @@
+page.insert_html :bottom, :payment_items, :partial=>"payment_item", :locals=>{ :payment => @payment }

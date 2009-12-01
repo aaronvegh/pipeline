@@ -2,9 +2,21 @@
 <h1>Edit invoice <%= @invoice.id %></h1>
 
 <div id="popup_container">
-	<h3>Status</h3>
-	<p><%= inv.radio_button(:status, :pending, {:checked=>@invoice.status=="pending"})%> Pending
-	<%= inv.radio_button(:status, :paid, {:checked=>@invoice.status=="paid"})%> Paid</p>
+	<h3>Payments</h3>
+	<p id="new_payment_link"><%= link_to_remote "[+] Add New Payment", :url=>{:controller=>"invoices", :action=>"new_payment_item" } %></p>
+	<table id="payment_items">
+		<tr>
+			<th>Date</th>
+			<th>Payment</th>
+			<th></th>
+		</tr>
+		<% if @invoice.payments %>
+		<% @invoice.payments.each do |p| %>
+			<%= render :partial=>"payment_item", :locals=>{ :payment => p } %>
+		<% end %>
+		<% end %>
+	</table>
+	
 	<br style="clear:both" />
 	<h3>Set invoice date</h3>
 	<%= calendar_date_select_tag "invoice[invoice_date]", @invoice.invoice_date %>

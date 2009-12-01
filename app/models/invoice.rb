@@ -3,6 +3,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :contact
   belongs_to :job
   has_many :invoiceitems
+  has_many :payments
   has_and_belongs_to_many :tax
   
   def Invoice.all_owing

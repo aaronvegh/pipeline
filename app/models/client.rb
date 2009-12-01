@@ -23,4 +23,8 @@ class Client < ActiveRecord::Base
     return total
   end
   
+  def short_company_name(len=10)
+    self.company.size > len ? self.company[0..len] + "..." : self.company
+  end
+  
 end

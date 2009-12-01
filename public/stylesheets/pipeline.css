@@ -100,7 +100,7 @@ body {
 	margin-right: 0px;
 }
 
-#navbar ul li a.active {
+#navbar ul li a.turnedon {
 	color: #e1ce48;
 }
 
@@ -473,11 +473,26 @@ p#new_invoice_link {
 	margin-top: -35px;
 }
 
+p#new_payment_link {
+	float: right;
+	margin-right: 28px;
+	margin-top: -35px;
+}
+
 p#new_invoice_link a {
+	color: #FFF;
+	text-decoration:none;
+}
+
+p#new_payment_link a {
 	color: #FFF;
 	text-decoration:none;
 }
 
 tr.task_item td {
 	border-bottom: 1px solid #CCC;
+}
+
+.calendar_date_select_popup_icon {
+
 }

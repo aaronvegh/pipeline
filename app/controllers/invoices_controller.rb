@@ -57,11 +57,28 @@ class InvoicesController < ApplicationController
   def update
     logger.debug "Got an invoice."
     @i = Invoice.find(params[:id])
-    @i.status = params[:invoice][:status]
+    
     @i.invoice_date = params[:invoice][:invoice_date]
     @i.client = Client.find(params[:client][:id])
     @i.contact = Contact.find(params[:contact][:id])
     @i.job = Job.find(params[:job][:id])
+    
+    # assemble payment items
+   if params[:payment]
+    params[:payment].each_key do |p|
+      pitem = Payment.find(p)
+      pitem.update_attributes(params[:payment][p])
+      @i.payments << pitem
+    end
+  end
+  # determine payment status
+  total = @i.invoice_total
+  payments = Payment.payments_total(@i)
+  if total > payments
+    @i.status = "pending"
+  else
+    @i.status = "paid"
+  end
     
     # assemble invoice items
    if params[:iitem]
@@ -98,6 +115,10 @@ class InvoicesController < ApplicationController
   
   def new_invoice_item
     @iitem = Invoiceitem.create()
+  end
+  
+  def new_payment_item
+    @payment = Payment.create()
   end
   
   def print

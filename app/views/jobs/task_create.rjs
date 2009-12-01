@@ -1,1 +1,2 @@
 page.insert_html :bottom, :newtasks, :partial=>"task", :locals=>{:task=>@task}
+page << "$('task_entry').value='';$('task_entry').focus();"

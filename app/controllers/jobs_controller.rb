@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   
   def index
     @current = "jobs"
-    @jobs = Job.find(:all)
+    @jobs = Job.find(:all, :order=>"created_at DESC")
     if params[:id]
       @job = Job.find(params[:id])
       @tasks = @job.tasks

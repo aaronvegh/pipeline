@@ -1,1 +1,3 @@
 page['box33'].replace_html :partial=>"invoice", :locals=>{:invoice=>@invoice}
+page << "$$('.active').each(function(c) {c.className=''});"
+page << "$('invoice_#{@invoice.id}').className='active'"

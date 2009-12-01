@@ -7,12 +7,12 @@
 <br style="clear:both" />
 </ul>
 
-<h2>Tasks for <%= job.description[0..25]%>..</h2>
+<h2>Tasks for <%= job.description[0..25]%></h2>
 <h2 style="margin-top:10px;">Add new task</h2>
 <% remote_form_for :task, :url=>{:action=>"task_create"} do |task| %>
 <table>
 	<tr>
-		<td><%= task.text_field :task, :size=>25 %></td>
+		<td><%= task.text_field :task, :size=>25, :id=>"task_entry" %></td>
 		<td>
 			<%= hidden_field_tag("job_id", job.id) %>
 			<%= submit_tag("Submit") %></td>

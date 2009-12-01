@@ -6,19 +6,19 @@
 		<% if @invoices %>
 		<table>	
 			<tr>
-				<th width="70">Invoice #</th>
+				<th width="70">Invoice</th>
 				<th>Days</th>
 				<th>Company</th>
 				<th width="100" style="text-align:right">Invoice Amt</th>
 				<th width="100" style="text-align:right">Outstanding</th>
 			</tr>
 		<% @invoices.each do |i| %>
-			<tr id="invoice_<%=i.id%>" onclick="<%= remote_function(:url=>{:controller=>"invoices", :action=>"show", :id=>i.id}) %>">
+			<tr id="invoice_<%=i.id%>" onclick="<%= remote_function(:url=>{:controller=>"invoices", :action=>"show", :id=>i.id}) %>" <%= "class='active'" if @active && @active.id == i.id%>>
 				<td><%= i.id %></td>
 				<td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %>
-				<td><%= i.client.company unless i.client.nil? %></td>
+				<td><%= i.client.short_company_name(20) unless i.client.nil? %></td>
 				<td class="money"><%= number_to_currency(i.invoice_total) %>
-				<td class="money"><%= i.status == "paid" ? number_to_currency(0):number_to_currency(i.invoice_total) %>
+				<td class="money"><%= i.status == "paid" ? number_to_currency(0) : number_to_currency(Payment.balance_outstanding(i)) %>
 			</tr>
 		<% end %>
 		</table>

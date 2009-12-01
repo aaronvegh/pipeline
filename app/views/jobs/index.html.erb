@@ -12,11 +12,11 @@
 				<th>Age</th>
 			</tr>
 		<% @jobs.each do |j| %>
-			<tr id="job_<%=j.id%>" onclick="<%= remote_function(:url=>{:controller=>"jobs", :action=>"tasks", :id=>j.id}) %>">
-				<td><%= j.client.company %></td>
+			<tr id="job_<%=j.id%>" onclick="<%= remote_function(:url=>{:controller=>"jobs", :action=>"tasks", :id=>j.id}) %>" <%= "class='active'" if @job && @job.id == j.id %>>
+				<td><%= j.client.short_company_name %></td>
 				<td><%= j.description %></td>
 				<td><%= j.status %></td>
-				<td><%= distance_of_time_in_words(Time.now - j.created_at) %>
+				<td><%= j.age_in_days %> days</td>
 			</tr>
 		<% end %>
 		</table>

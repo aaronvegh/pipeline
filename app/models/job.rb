@@ -3,6 +3,14 @@ class Job < ActiveRecord::Base
   has_many :tasks
   has_one :estimate
   
+  def age_in_days
+    created_date = self.created_at
+    now = Time.now
+    diff = now - created_date
+    a = diff/86400
+    a.to_i
+  end
+  
   def Job.active_total
     jobs = Job.find_all_by_status("active")
     total = 0
@@ -19,7 +27,7 @@ class Job < ActiveRecord::Base
   def Job.estimate_value
     ests = self.estimates
     total = 0
-    ests.collect { |e| total += e.dollar_value }
+    ests.collect { |e| total += e.job.dollar_value }
     return total
   end
   

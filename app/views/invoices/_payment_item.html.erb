@@ -1,0 +1,5 @@
+<tr id="pitem_<%= payment.id %>">
+	<td width="160"><%= calendar_date_select_tag("payment["+payment.id.to_s+"][payment_date]", payment.payment_date, :style=>"width:115px;float:left;") %></td>
+	<td><%= text_field_tag("payment["+payment.id.to_s+"][payment_amount]", payment.payment_amount, :style=>"width:150px") %></td>
+	<td><%= link_to_remote image_tag("/images/cancel.png"), :url=>{:controller=>"invoices", :action=>"remove_paymentitem", :id=>payment.id} %></td>
+</tr>
