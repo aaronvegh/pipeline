@@ -7,7 +7,7 @@
 	<br style="clear:both" /><br style="clear:both" />
 	<h3>Choose a client, contact and job</h3>
 	<% fields_for :client do |c| %>
-	<%= c.collection_select(:id, Client.find(:all), :id, :company, {:prompt=>"Choose a client..."}, {:onchange=>remote_function(:url=>{:action=>:choose_client}, :with=>"'client[id][]=' + this.value") } ) %>
+	<%= c.collection_select(:id, Client.find(:all, :order=>"company ASC"), :id, :company, {:prompt=>"Choose a client..."}, {:onchange=>remote_function(:url=>{:action=>:choose_client}, :with=>"'client[id][]=' + this.value") } ) %>
 	<% end %>
 	
 	<% fields_for :contact do |contact| %>

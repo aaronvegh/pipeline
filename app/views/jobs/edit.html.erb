@@ -4,7 +4,7 @@
 <div id="popup_container">
   <h3>Job Specs</h3>
   <p>Client</p>
-  <p><%= c.collection_select(:client_id, Client.find(:all), :id, :company, {:prompt=>"Choose a client..."}, {:style=>"float:none"}) %></p>
+  <p><%= c.collection_select(:client_id, Client.find(:all, :order=>"company ASC"), :id, :company, {:prompt=>"Choose a client..."}, {:style=>"float:none"}) %></p>
   
   <p>Status</p>
   <p><%= c.select(:status, job_statuses) %>

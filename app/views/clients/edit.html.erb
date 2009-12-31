@@ -1,4 +1,4 @@
-<% form_for @client, :url=>{:action=>"update"} do |c| %>
+<% remote_form_for @client, :url=>{:action=>"update"} do |c| %>
 <h1>Update <%= @client.company %></h1>
 
 <div id="popup_container">
@@ -37,7 +37,7 @@
 	
 	<br style="clear:both" />
 	<%= c.hidden_field(:id)%>
-	<%= submit_tag("Update Client", {:onclick=>"refreshParent()"}) %>
+	<%= submit_tag("Update Client") %>
 	
 </div>
 <% end %>

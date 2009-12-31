@@ -1,4 +1,4 @@
-<% form_for :client, :url=>{:action=>"create"} do |c| %>
+<% remote_form_for :client, :url=>{:action=>"create"} do |c| %>
 <h1>Create new client</h1>
 
 <div id="popup_container">
@@ -36,7 +36,7 @@
 	</table>
 	
 	<br style="clear:both" />
-	<%= submit_tag("Create Client", {:onclick=>"refreshParent()"}) %>
+	<%= submit_tag("Create Client") %>
 	
 </div>
 <% end %>

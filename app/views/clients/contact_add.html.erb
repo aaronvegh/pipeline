@@ -1,4 +1,4 @@
-<% form_for :contact, :url=>{:action=>"contact_create"} do |c| %>
+<% remote_form_for :contact, :url=>{:action=>"contact_create"} do |c| %>
 <h1>New contact for <%= @client.company %></h1>
 
 <div id="popup_container">

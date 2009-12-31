@@ -10,7 +10,7 @@ class Invoice < ActiveRecord::Base
     i = Invoice.find_all_by_status("pending")
     total = 0
     i.each do |inv|
-      total += inv.invoice_total
+      total += Payment.balance_outstanding(inv)
     end 
     return total
   end

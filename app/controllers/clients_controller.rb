@@ -4,7 +4,10 @@ class ClientsController < ApplicationController
   def index
     @current = "clients"
     @clients = Client.find(:all, :order=>"company")
-    
+    if params[:id]
+      @client = Client.find(params[:id])
+      @contacts = @client.contacts
+    end
   end
   
   def new 
@@ -13,8 +16,7 @@ class ClientsController < ApplicationController
   
   def create
     c = Client.create(params[:client])
-    logger.debug "Client: " + params[:client].inspect
-    redirect_to :action=>"index"
+    
   end
   
   def edit

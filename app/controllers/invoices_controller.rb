@@ -55,7 +55,7 @@ class InvoicesController < ApplicationController
   end
   
   def update
-    logger.debug "Got an invoice."
+    
     @i = Invoice.find(params[:id])
     
     @i.invoice_date = params[:invoice][:invoice_date]

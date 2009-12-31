@@ -1,7 +1,7 @@
 <div class="home_box" id="past">
         <div class="title"></div>
         <div class="body">
-          <p><%= number_to_currency(Invoice.all_owing)%> outstanding from <%= @invoices.size%> invoice<%= "s" if @invoices.size > 1 %></p>
+          <p><%= number_to_currency(Invoice.all_owing)%> outstanding from <%= @invoices.size%> invoice<%= "s" if @invoices.size > 1 || @invoices.size == 0 %></p>
           <table>
           <% if @invoices %>
             <% @invoices.each do |i| %>
@@ -20,7 +20,7 @@
       <div class="home_box" id="present">
         <div class="title"></div>
         <div class="body">
-          <p><%= number_to_currency(Job.active_total)%> pending on <%= @jobs.size %> active job<%= "s" if @jobs.size > 1 %></p>
+          <p><%= number_to_currency(Job.active_total)%> pending on <%= @jobs.size %> active job<%= "s" if @jobs.size > 1 || @jobs.size == 0 %></p>
           <table>
           <% if @jobs %>
             <% @jobs.each do |j| %>
@@ -28,7 +28,7 @@
               <% num_complete = complete.size.nil? ? 0 : complete.size %>
               <% task_text =  num_complete.to_s + " of " + j.tasks.size.to_s %>
             <tr>
-              <td><%= j.client.company %></td>
+              <td><%= j.client.short_company_name %></td>
               <td><%= link_to task_text, :controller=>"jobs", :action=>"index", :id=>j.id %></td>
               <td class="money"><%= number_to_currency(j.dollar_value)%></td>
             </tr>
@@ -42,7 +42,7 @@
       <div class="home_box" id="future">
         <div class="title"></div>
         <div class="body">
-          <p><%= number_to_currency(Job.estimate_value)%> potential from <%= Job.estimates.size unless Job.estimates.size.nil? %> prospect<%= "s" if Job.estimates.size > 1 %></p>
+          <p><%= number_to_currency(Job.estimate_value)%> potential from <%= Job.estimates.size unless Job.estimates.size.nil? %> prospect<%= "s" if Job.estimates.size > 1 || Job.estimates.size == 0 %></p>
 
           <table>
           <% if @estimates %>

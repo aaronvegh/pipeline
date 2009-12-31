@@ -43,7 +43,6 @@ class JobsController < ApplicationController
   end
   
   def create
-    logger.debug "Here we are"
     j = Job.create(params[:jobs])
     client = Client.find(params[:client][:id])
     j.client = client
