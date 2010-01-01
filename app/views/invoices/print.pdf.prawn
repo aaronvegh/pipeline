@@ -8,7 +8,7 @@ l = i.invoiceitems
 	    
 	    
 	pdf.bounding_box [320,600], :width=>200 do 
-	   pdf.text "Invoice ##{i.id}", :align=>:right, :size=>16, :style=>:bold
+	   pdf.text "Invoice ##{i.invoice_number}", :align=>:right, :size=>16, :style=>:bold
 	   pdf.text "#{i.invoice_date.strftime("%B %d, %Y")}", :align=>:right
   end
 
