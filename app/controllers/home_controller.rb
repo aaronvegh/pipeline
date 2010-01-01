@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   layout 'layout'
   
+  before_filter :valid_user
+  
   def index
     @current = "home"
     @invoices = Invoice.find_all_by_status("pending")

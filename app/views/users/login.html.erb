@@ -1,0 +1,5 @@
+<% form_for :users, :url=>{:controller=>"users", :action=>"login_attempt"} do |u| %>
+	Username: <%= u.text_field :username %><br/>
+	Password: <%= u.password_field :password %>
+	<%= submit_tag("Login") %>
+<% end %>
