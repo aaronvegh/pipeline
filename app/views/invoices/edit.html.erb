@@ -1,5 +1,5 @@
 <% remote_form_for @invoice, :url=>{:action=>"update"} do |inv| %>
-<h1>Edit invoice <%= @invoice.id %></h1>
+<h1>Edit invoice <%= inv.text_field :invoice_number, :id=>"invoice_number" %></h1>
 
 <div id="popup_container">
 	<h3>Payments</h3>

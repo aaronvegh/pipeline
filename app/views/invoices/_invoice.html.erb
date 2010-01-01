@@ -5,7 +5,7 @@
 <br style="clear:both" />
 </ul>
 
-<h2>#<%= invoice.id %> / <%= invoice.client.company %></h2>
+<h2>#<%= invoice.invoice_number %> / <%= invoice.client.company %></h2>
 <p><%= invoice.contact.fname %> <%= invoice.contact.lname %></p>
 <% items = invoice.invoiceitems %>
 <% if items %>

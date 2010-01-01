@@ -2,6 +2,9 @@
 <h1>Create new invoice</h1>
 
 <div id="popup_container">
+	<h3>Invoice Number</h3>
+	<%= text_field_tag("invoice[invoice_number]", @next_inv_num, :style=>"width:50px") %>
+	<br style="clear:both" /><br style="clear:both" />
 	<h3>Set invoice date</h3>
 	<%= calendar_date_select_tag "invoice_date", Time.now %>
 	<br style="clear:both" /><br style="clear:both" />

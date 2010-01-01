@@ -14,7 +14,7 @@
 			</tr>
 		<% @invoices.each do |i| %>
 			<tr id="invoice_<%=i.id%>" onclick="<%= remote_function(:url=>{:controller=>"invoices", :action=>"show", :id=>i.id}) %>" <%= "class='active'" if @active && @active.id == i.id%>>
-				<td><%= i.id %></td>
+				<td><%= i.invoice_number %></td>
 				<td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %>
 				<td><%= i.client.short_company_name(20) unless i.client.nil? %></td>
 				<td class="money"><%= number_to_currency(i.invoice_total) %>

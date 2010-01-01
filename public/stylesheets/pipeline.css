@@ -496,3 +496,11 @@ tr.task_item td {
 .calendar_date_select_popup_icon {
 
 }
+
+#invoice_number {
+	width: 50px;
+	color: #FFF;
+	font-size: 24px;
+	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+	background-color: #E1CE48;
+}

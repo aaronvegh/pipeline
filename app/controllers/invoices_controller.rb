@@ -19,6 +19,15 @@ class InvoicesController < ApplicationController
     @clients = Client.find(:all)
     @iitem = Invoiceitem.create()
     @taxes = Tax.find(:all)
+    
+    # get next invoice number
+    inv = Invoice.last.invoice_number
+    if inv.nil?
+      @next_inv_num = 1
+    else
+      @next_inv_num = inv + 1
+    end
+    
     render :action => "new", :layout => "popup"
   end
   
@@ -62,6 +71,7 @@ class InvoicesController < ApplicationController
     @i.client = Client.find(params[:client][:id])
     @i.contact = Contact.find(params[:contact][:id])
     @i.job = Job.find(params[:job][:id])
+    @i.invoice_number = params[:invoice][:invoice_number]
     
     # assemble payment items
    if params[:payment]
