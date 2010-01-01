@@ -1,0 +1,37 @@
+Introduction
+============
+Pipeline is a Ruby on Rails application used to manage your freelance web development business. This application is being written for the (at the time of this writing) forthcoming book by Aaron Vegh, Professional Web Development on the Macintosh. 
+
+Pipeline is intended for people like you and me: single developers who are managing their own business. With Pipeline, you’ll be able to determine the health of your business in a single view, by showing the three “pillars” of your business: your accounts receivable (past work), your current jobs and tasks (current work) and your estimates for pending jobs (future work). All in one place.
+
+What's It Look Like?
+====================
+Here's a few screenshots from the version current as of January 1, 2010.
+
+[![Home Dashboard]("http://www.vegh.ca/pipeline/pipeline1_thumb.png" "Home Dashboard")](http://www.vegh.ca/pipeline/pipeline1.png)
+
+[![Invoices]("http://www.vegh.ca/pipeline/pipeline2_thumb.png" "Invoices")](http://www.vegh.ca/pipeline/pipeline2.png)
+
+[![Client Listing]("http://www.vegh.ca/pipeline/pipeline3_thumb.png" "Client Listing")](http://www.vegh.ca/pipeline/pipeline3.png)
+
+[![Jobs Listing]("http://www.vegh.ca/pipeline/pipeline4_thumb.png" "Jobs Listing")](http://www.vegh.ca/pipeline/pipeline4.png)
+
+How to Install
+==============
+You need to have a Ruby on Rails environment. I presume that you have a working knowledge of RoR in order to use this. These are the basic steps.
+
+1. Clone the repo: 
+    git clone git://github.com/aaronvegh/pipeline.git
+
+2. Run the data migration:
+    rake db:migrate
+
+3. Set your access password. In /app/controllers/users_controller.rb, change the username and password values to something appropriate. (Yes, this is really lame, but I'll get to it!)
+
+4. Create a background image for your invoices and estimate documents, using the image at /images/inno_document_bg.png as  your template. Then adjust the metrics in the /views/invoices/print.pdf.prawn and /views/jobs/print_estimate.pdf.prawn documents. 
+
+Let me know if it's useful to you!
+
+Current Status
+==============
+Pipeline v 0.1 has been released. I'm now using it as a dedicated solution for my business, so you'll see frequent updates as it is refined to meet my needs.
