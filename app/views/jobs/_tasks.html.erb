@@ -2,7 +2,7 @@
 	<li><%= link_to "Edit Job", {:controller=>"jobs", :action=>"edit", :id=>job.id}, :popup=>['Edit job', 'height=500,width=600,resizable=yes,scrollbars=yes']%></li>
 	<li><%= link_to "Delete Job", {:controller=>"jobs", :action=>"delete", :id=>job.id}, :confirm=>"Are you sure you want to do this? You can't get it back." %></li>
 	<% if job.estimate %>
-		<li><%= link_to "Print Estimate", {:controller=>"jobs", :action=>"print_estimate", :id=>job.id}, :popup=>['Print estimate', 'height=500,width=600,resizable=yes,scrollbars=yes']%>
+		<li><%= link_to "Print Estimate", {:controller=>"jobs", :action=>"print_estimate", :id=>job.id}, :popup=>['Print estimate', 'height=700,width=1000,resizable=yes,scrollbars=yes']%>
 	<% end %>
 <br style="clear:both" />
 </ul>
