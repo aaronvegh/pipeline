@@ -1,6 +1,6 @@
 Introduction
 ============
-Pipeline is a Ruby on Rails application used to manage your freelance web development business. This application is being written for the (at the time of this writing) forthcoming book by Aaron Vegh, Professional Web Development on the Macintosh. 
+Pipeline is a Ruby on Rails application used to manage your freelance web development business. This application is being written for the (at the time of this writing) forthcoming book by Aaron Vegh,  [Web Development with the Mac](http://www.amazon.com/Web-Development-Mac-Developer-Reference/dp/0470533994). 
 
 Pipeline is intended for people like you and me: single developers who are managing their own business. With Pipeline, you’ll be able to determine the health of your business in a single view, by showing the three “pillars” of your business: your accounts receivable (past work), your current jobs and tasks (current work) and your estimates for pending jobs (future work). All in one place.
 
@@ -8,13 +8,13 @@ What's It Look Like?
 ====================
 Here's a few screenshots from the version current as of January 1, 2010.
 
-[![Home Dashboard]("http://www.vegh.ca/pipeline/pipeline1_thumb.png" "Home Dashboard")](http://www.vegh.ca/pipeline/pipeline1.png)
+<a href="http://www.vegh.ca/pipeline/pipeline1.png"><img src="http://www.vegh.ca/pipeline/pipeline1_thumb.png" /></a>
 
-[![Invoices]("http://www.vegh.ca/pipeline/pipeline2_thumb.png" "Invoices")](http://www.vegh.ca/pipeline/pipeline2.png)
+<a href="http://www.vegh.ca/pipeline/pipeline2.png"><img src="http://www.vegh.ca/pipeline/pipeline2_thumb.png" /></a>
 
-[![Client Listing]("http://www.vegh.ca/pipeline/pipeline3_thumb.png" "Client Listing")](http://www.vegh.ca/pipeline/pipeline3.png)
+<a href="http://www.vegh.ca/pipeline/pipeline3.png"><img src="http://www.vegh.ca/pipeline/pipeline3_thumb.png" /></a>
 
-[![Jobs Listing]("http://www.vegh.ca/pipeline/pipeline4_thumb.png" "Jobs Listing")](http://www.vegh.ca/pipeline/pipeline4.png)
+<a href="http://www.vegh.ca/pipeline/pipeline4.png"><img src="http://www.vegh.ca/pipeline/pipeline4_thumb.png" /></a>
 
 How to Install
 ==============

@@ -1,6 +1,0 @@
-Pipeline is a Ruby on Rails application used to manage your freelance web development business. This application is being written for the (at the time of this writing) forthcoming book by Aaron Vegh, Professional Web Development on the Macintosh. 
-
-Pipeline is intended for people like you and me: single developers who are managing their own business. With Pipeline, you’ll be able to determine the health of your business in a single view, by showing the three “pillars” of your business: your accounts receivable (past work), your current jobs and tasks (current work) and your estimates for pending jobs (future work). All in one place.
-
-** Current Status **
-Pipeline v 0.1 has been released! Go nuts with it.
