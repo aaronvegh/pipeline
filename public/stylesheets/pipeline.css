@@ -408,6 +408,7 @@ table.invoices td.invoiceitems {
 
 ul.object_options {
 	width: 290px;
+	height:20px;
 	list-style-type: none;
 	border-top: 1px solid #EEE;
 	border-bottom: 1px solid #EEE;
@@ -420,6 +421,7 @@ ul.object_options li {
 	margin-right: 25px;
 	margin-top: 2px;
 	font-size: 13px;
+	
 }
 
 p.new_link {
