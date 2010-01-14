@@ -78,9 +78,7 @@ class JobsController < ApplicationController
   
   def print_estimate
     @estimate = Job.find(params[:id]).estimate
-    respond_to do |format|
-      format.pdf
-    end
+    prawnto :inline => false, :filename => @estimate.title+".pdf"
   end
   
 end
