@@ -133,9 +133,7 @@ class InvoicesController < ApplicationController
   
   def print
     @invoice = Invoice.find(params[:id])
-    respond_to do |format|
-      format.pdf
-    end
+    prawnto :inline => false, :filename => @invoice.invoice_number.to_s + " - " + @invoice.client.company + ".pdf"
   end
   
   def remove_invoiceitem

@@ -1,5 +1,5 @@
 <ul class="object_options">
-	<li><%= link_to "Print", {:controller=>"invoices", :action=>"print", :id=>invoice.id}, :popup=>['Print estimate', 'height=700,width=1000,resizable=yes,scrollbars=yes'] %></li>
+	<li><%= link_to "Print", {:controller=>"invoices", :action=>"print", :id=>invoice.id, :format=>'pdf'} %></li>
 	<li><%= link_to "Edit", {:controller=>"invoices", :action=>"edit", :id=>invoice.id}, :popup=>['Edit invoice', 'height=580,width=600,resizable=yes,scrollbars=yes'] %></li>
 	<li><%= link_to "Delete", {:controller=>"invoices", :action=>"delete", :id=>invoice.id} %></li>
 <br style="clear:both" />
