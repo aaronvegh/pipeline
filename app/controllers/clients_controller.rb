@@ -49,8 +49,6 @@ class ClientsController < ApplicationController
     c = Contact.create(params[:contact])
     client = Client.find(params[:client][:id])
     client.contacts << c
-    logger.debug "New client: " + params[:contact].inspect
-    redirect_to :action=>"index"
   end
     
   def contact_edit
@@ -63,4 +61,8 @@ class ClientsController < ApplicationController
     c.update_attributes!(params[:contact])
   end
   
+  def contact_delete
+    @contact = Contact.find(params[:id])
+    @contact.delete
+  end
 end

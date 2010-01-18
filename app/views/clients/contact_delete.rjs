@@ -1,0 +1,1 @@
+page["contact_"+@contact.id.to_s].remove

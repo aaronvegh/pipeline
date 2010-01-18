@@ -9,9 +9,9 @@
 <% if contacts %>
 <table class="invoices">
   <% contacts.each do |c| %>
-  <tr>
+  <tr id="contact_<%=c.id%>">
     <td class="invoiceitems"><%= c.fname %> <%= c.lname %></td>
-    <td class="invoiceitems"><%= link_to "Edit", {:action=>"contact_edit", :id=>c.id}, :popup=>['Edit client', 'width=600,height=550,resizable=yes,scrollbars=yes'] %>
+    <td class="invoiceitems"><%= link_to "Edit", {:action=>"contact_edit", :id=>c.id}, :popup=>['Edit client', 'width=600,height=550,resizable=yes,scrollbars=yes'] %> <%= link_to_remote image_tag("/images/cancel.png"), :url=>{:action=>"contact_delete", :id=>c.id}, :confirm=>"Are you sure you want to delete this? You can't get it back." %>
   </tr>
   <% end %>
 </table>
