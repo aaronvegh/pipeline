@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
   end
   
   def create
-    @i = Invoice.create(:invoice_number=>params[:invoice_number], :invoice_date=>params[:invoice_date], :status=>"pending")
+    @i = Invoice.create(:invoice_number=>params[:invoice][:invoice_number], :invoice_date=>params[:invoice_date], :status=>"pending")
     @i.client = Client.find(params[:client][:id])
     @i.contact = Contact.find(params[:contact][:id])
     @i.job = Job.find(params[:job][:id])
