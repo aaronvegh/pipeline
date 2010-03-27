@@ -2,17 +2,34 @@
         <div class="title"></div>
         <div class="body">
           <p><%= number_to_currency(Invoice.all_owing)%> outstanding from <%= @invoices.size%> invoice<%= "s" if @invoices.size > 1 || @invoices.size == 0 %></p>
-          <table>
-          <% if @invoices %>
-            <% @invoices.each do |i| %>
-            <tr>
-              <td><%= link_to i.client.short_company_name, :controller=>"invoices", :action=>"index", :id=>i.id %></a></td>
-              <td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %> days</td>
-              <td class="money"><%= number_to_currency(Payment.balance_outstanding(i))%></td>
-            </tr>
+		 
+		<% if @invoices_60plus %>
+		<p style="margin-top:10px;">60+ Days: <%= number_to_currency(invoices_sum(@invoices_60plus)) %></p>
+          <table style="margin-bottom:10px;">
+          
+            <% @invoices_60plus.each do |i| %>
+            	<%= render :partial=>"invoice_row", :locals=>{:i=>i}%>
             <% end %>
-          <% end %>
           </table>
+        <% end %>
+
+		<% if @invoices_30plus %>
+		<p>30+ Days: <%= number_to_currency(invoices_sum(@invoices_30plus)) %></p>
+          <table style="margin-bottom:10px;">
+            <% @invoices_30plus.each do |i| %>
+            	<%= render :partial=>"invoice_row", :locals=>{:i=>i}%>
+            <% end %>
+          </table>
+        <% end %>
+
+        <% if @invoices_0plus %>
+		<p>0+ Days: <%= number_to_currency(invoices_sum(@invoices_0plus)) %> </p>
+          <table>
+            <% @invoices_0plus.each do |i| %>
+            	<%= render :partial=>"invoice_row", :locals=>{:i=>i}%>
+            <% end %>
+          </table>
+        <% end %>
         </div>
         <div class="foot"></div>
       </div>

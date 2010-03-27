@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to i.client.short_company_name, :controller=>"invoices", :action=>"index", :id=>i.id %></a></td>
+  <td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %> days</td>
+  <td class="money"><%= number_to_currency(Payment.balance_outstanding(i))%></td>
+</tr>
