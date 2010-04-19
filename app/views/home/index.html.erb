@@ -4,6 +4,7 @@
           <p style="margin-bottom:10px;"><%= number_to_currency(Invoice.all_owing)%> outstanding from <%= @invoices.size%> invoice<%= "s" if @invoices.size > 1 || @invoices.size == 0 %></p>
 		 
 		<% if @invoices_60plus.size > 0 %>
+		
 		<p>60+ Days: <%= number_to_currency(invoices_sum(@invoices_60plus)) %></p>
           <table style="margin-bottom:10px;">
           
