@@ -1,5 +1,15 @@
+<h1 style="text-align:center;color:#000">Pipeline is standing by...</h1>
+<div id="login_form">
 <% form_for :users, :url=>{:controller=>"users", :action=>"login_attempt"}, :html=>{:method=>"post"} do |u| %>
-	Username: <%= u.text_field :username %><br/>
-	Password: <%= u.password_field :password %>
-	<%= submit_tag("Login") %>
+	<div class="formrow">
+		<label>Username:</label> <%= u.text_field :username, :style=>"width:210px" %>
+	</div>
+	<div class="formrow">
+		<label>Password:</label> <%= u.password_field :password, :style=>"width:210px" %>
+	</div>
+	<div class="formrow" style="margin-bottom:0px">
+		<%= submit_tag("Login", :style=>"text-align:right") %>
+	</div>
 <% end %>
+<br style="clear:both" />
+</div>

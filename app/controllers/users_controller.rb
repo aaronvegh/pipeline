@@ -19,4 +19,9 @@ class UsersController < ApplicationController
     end
   end
   
+  def logout
+    session[:valid_user] = "false"
+    redirect_to :action=>"login"
+  end
+  
 end

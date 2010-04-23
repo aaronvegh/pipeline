@@ -506,3 +506,33 @@ tr.task_item td {
 	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
 	background-color: #E1CE48;
 }
+
+#login_form {
+	width: 360px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	border: 1px solid #EDEDED;
+	font-family: Trebuchet, sans-serif;
+}
+
+.formrow {
+	float: left;
+	margin-bottom: 10px;
+	width:100%;
+}
+
+#login_form label {
+	float: left;
+	width: 90px;
+	margin-top:10px;
+	text-align:right;
+}
+
+#login_form input {
+	float:right;
+	padding: 5px;
+	border: 1px solid #000;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
