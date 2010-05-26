@@ -4,7 +4,12 @@ class InvoicesController < ApplicationController
   
   def index
     @current = "invoices"
-    @invoices = Invoice.find(:all)
+    if params[:year].nil?
+      @year = Time.now.year
+    else
+      @year = params[:year]
+    end
+    @invoices = Invoice.invoices_for_year(@year)
     @taxes = Tax.find(:all)
     if params[:id]
       @active = Invoice.find(params[:id])

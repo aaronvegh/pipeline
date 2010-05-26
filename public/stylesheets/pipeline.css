@@ -536,3 +536,7 @@ tr.task_item td {
 	font-size: 18px;
 	margin-bottom: 10px;
 }
+
+tr.summary_row {
+	background-color: #ac9f43;
+}

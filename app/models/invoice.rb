@@ -39,6 +39,42 @@ class Invoice < ActiveRecord::Base
     return taxes
   end
   
+  def Invoice.invoices_for_month(invoices, month)
+    returning_invoices = Array.new
+    invoices.each do |i|
+      if i.invoice_date.month == month
+        returning_invoices << i
+      end
+    end
+    return returning_invoices
+  end
+  
+  def Invoice.invoices_for_year(year)
+    nd = Date.parse("January 1, " + year.to_s)
+    invoices = Invoice.find(:all, :conditions=> {:invoice_date => nd.beginning_of_year..nd.end_of_year})
+    return invoices
+  end
+  
+  def Invoice.total_for_month(invoices, month)
+    invoice_total = 0
+    invoices.each do |i|
+      if i.invoice_date.month == month.month
+        invoice_total = invoice_total + i.invoice_total
+      end
+    end
+    return invoice_total
+  end
+  
+  def Invoice.total_for_month_owing(invoices, month)
+    invoice_total = 0
+    invoices.each do |i|
+      if i.invoice_date.month == month.month
+        invoice_total = invoice_total + Payment.balance_outstanding(i)
+      end
+    end
+    return invoice_total
+  end
+  
   def Invoice.invoices_60plus
     invoices = Invoice.find_all_by_status("pending")
     returning_invoices = Array.new

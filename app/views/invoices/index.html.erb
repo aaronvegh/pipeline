@@ -12,7 +12,23 @@
 				<th width="100" style="text-align:right">Invoice Amt</th>
 				<th width="100" style="text-align:right">Outstanding</th>
 			</tr>
-		<% @invoices.each do |i| %>
+		<% start_month = @invoices.first.invoice_date.month %>
+		
+		<% if Time.now.year != @year #we need to account for earlier years %>
+			<% end_date = Date.parse("December 31, " + @year) %>
+		<% else %>
+			<% end_date = Time.now %>
+		<% end %>
+		
+		<% while start_month <= end_date.month %>
+			<% this_month = Date.parse("1-" + start_month.to_s + "-" + @year.to_s)%>
+			<tr class="summary_row">
+				<td colspan="3"><%= this_month.strftime("%B %Y") %></td>
+				<td class="money"><%= number_to_currency(Invoice.total_for_month(@invoices, this_month)) %></td>
+				<td class="money"><%= number_to_currency(Invoice.total_for_month_owing(@invoices, this_month)) %></td>
+			</tr>
+			<% month_invoices = Invoice.invoices_for_month(@invoices, start_month) %>
+			<% month_invoices.each do |i| %>
 			<tr id="invoice_<%=i.id%>" onclick="<%= remote_function(:url=>{:controller=>"invoices", :action=>"show", :id=>i.id}) %>" <%= "class='active'" if @active && @active.id == i.id%>>
 				<td><%= i.invoice_number %></td>
 				<td><%= i.status != "paid" ? days_since_date(i.invoice_date.to_date):"-" %>
@@ -20,6 +36,8 @@
 				<td class="money"><%= number_to_currency(i.invoice_total) %>
 				<td class="money"><%= i.status == "paid" ? number_to_currency(0) : number_to_currency(Payment.balance_outstanding(i)) %>
 			</tr>
+			<% end %>
+			<% start_month = start_month+1 %>
 		<% end %>
 		</table>
 		<% end %>		
