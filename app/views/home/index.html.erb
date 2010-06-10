@@ -67,8 +67,7 @@
             <% @estimates.each do |e| %>
             <tr>
               <td><%= e.job.client.company %></td>
-              <td><%= link_to "Estimate", {:controller=>"jobs", :action=>"edit", :id=>e.job.id}, :popup=>['Edit job', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></a></td>
-              <td class="money"><%= number_to_currency(e.dollar_value)%></td>
+              <td class="money"><%= link_to number_to_currency(e.job.dollar_value), {:controller=>"jobs", :action=>"edit", :id=>e.job.id}, :popup=>['Edit job', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></a></td>
             </tr>
             <% end %>
           <% end %>
