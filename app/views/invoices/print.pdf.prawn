@@ -3,8 +3,8 @@ l = i.invoiceitems
 
 	company_logo = RAILS_ROOT+"/public/images/inno_document_bg.png"
 	pdf.image company_logo, 
-	    :at  => [-35,756]#, 
-	    #:fit=>Prawn::Document::SIZES["LETTER"]
+	    :at  => [-35,756], 
+	    :fit=>Prawn::Document::SIZES["LETTER"]
 	    
 	    
 	pdf.bounding_box [320,600], :width=>200 do 
