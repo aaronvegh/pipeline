@@ -1,0 +1,29 @@
+<div id="box66" class="job">
+	<div id="box66_top" class="job"></div>
+	<div id="box66_content" class="job">
+		<h1>Contractors</h1>
+		<p class="new_link"><%= link_to "[+] New Contractor", {:controller=>"contractors", :action=>"new"}, :popup=>['Create new contractor', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
+		<% if @contractors %>
+		<table>	
+			<tr>
+				<th>Name</th>
+				<th>Total Value</th>
+			</tr>
+		<% @contractors.each do |j| %>
+			<tr id="contractor_<%=j.id%>" onclick="<%= remote_function(:url=>{:controller=>"contractors", :action=>"contracts", :id=>j.id}) %>" <%= "class='active'" if @contractor && @contractor.id == j.id %>>
+				<td><%= j.fname %> <%= j.lname %></td>
+				<td><%= format_currency(j.contract_total) %></td>
+			</tr>
+		<% end %>
+		</table>
+		<% end %>		
+	</div>
+	<div id="box66_bottom" class="job"></div>
+</div>
+
+<div id="box33">
+	<% if @contracts %>
+		<%= render :partial=>"contracts", :locals=>{:contracts=>@contracts}%>
+	<% end %>
+</div>
+<br style="clear:both" />

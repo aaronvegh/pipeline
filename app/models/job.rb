@@ -2,6 +2,7 @@ class Job < ActiveRecord::Base
   belongs_to :client
   has_many :tasks
   has_one :estimate
+  has_many :contracts
   
   def age_in_days
     created_date = self.created_at

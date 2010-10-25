@@ -1,0 +1,9 @@
+<h2>Contracts for <%= @contractor.fname %> <%= @contractor.lname %></h2>
+<table>
+	<% @contracts.each do |c| %>
+	<tr>
+		<td><%= c.job.description %></td>
+		<td><%= format_currency(c.amount) %></td>
+	</tr>
+	<% end %>
+</table>

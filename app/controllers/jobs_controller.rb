@@ -64,12 +64,20 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @estimate = @job.estimate unless @job.estimate.nil?
+    @contracts = @job.contracts
     render :action=>"edit", :layout=>"popup"
   end
   
   def update
     @job = Job.find(params[:job][:id])
     @job.update_attributes!(params[:job])
+    if params[:contract_item]
+      params[:contract_item].each_key do |ci|
+        citem = Contract.find(ci)
+        citem.update_attributes(params[:contract_item][ci])
+        @job.contracts << citem
+      end
+    end
     if params[:estimate]
       @estimate = Estimate.find(params[:estimate][:id])
       @estimate.update_attributes!(params[:estimate])
@@ -79,6 +87,10 @@ class JobsController < ApplicationController
   def print_estimate
     @estimate = Job.find(params[:id]).estimate
     prawnto :inline => false, :filename => @estimate.title+".pdf"
+  end
+  
+  def new_contract
+    @contract = Contract.create()
   end
   
 end

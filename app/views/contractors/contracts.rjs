@@ -1,0 +1,3 @@
+page['box33'].replace_html :partial=>"contracts", :locals=>{:contracts=>@contracts, :contractor=>@contractor}
+page << "$$('.active').each(function(c) {c.className=''});"
+page << "$('contractor_#{@contractor.id}').className='active'"

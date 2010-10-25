@@ -1,0 +1,6 @@
+<tr id="contract_item_<%= contract.id %>">
+	<td><%= select("contract_item["+contract.id.to_s+"]", "contractor_id", Contractor.all.collect {|c| [c.fname + " " + c.lname, c.id] }, {:include_blank=>true, :selected=>contract.contractor_id}) %></td>
+	<td><%= text_field_tag("contract_item["+contract.id.to_s+"][amount]", contract.amount) %></td>
+	<td><%= text_field_tag("contract_item["+contract.id.to_s+"][paid]", contract.paid) %></td>
+	<td><%= link_to_remote image_tag("/images/cancel.png"), :url=>{:controller=>"jobs", :action=>"remove_contractitem", :id=>contract.id} %></td>
+</tr>

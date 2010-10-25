@@ -7,8 +7,29 @@
   <p><%= c.collection_select(:client_id, Client.find(:all, :order=>"company ASC"), :id, :company, {:prompt=>"Choose a client..."}, {:style=>"float:none"}) %></p>
   
   <p>Status</p>
-  <p><%= c.select(:status, job_statuses) %>
-  
+  <p><%= c.select(:status, job_statuses) %></p>
+	
+	<br style="clear:both" />
+  	
+	<h3>Add Contracts</h3>
+	<p id="new_contract_link"><%= link_to_remote "[+] Add New Contract", :url=>{:controller=>"jobs", :action=>"new_contract" } %></p>
+
+	<table id="contract_items">
+		<tr>
+			<th>Contractor</th>
+			<th>Amount</th>
+			<th>Paid</th>
+			<th></th>
+		</tr>
+		<% fields_for @contract_item do |contract_item| %>
+			<% if @contracts %>
+				<% @contracts.each do |con| %>
+					<%= render :partial=>"contract_item", :locals=>{ :contract => con, :contract_item => contract_item } %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</table>
+	<br style="clear:both"/>
   <p>Description</p>
   <p><%= c.text_field :description, :size=>55 %>
   

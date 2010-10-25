@@ -1,0 +1,1 @@
+page.insert_html :bottom, :contract_items, :partial=>"contract_item", :locals=>{ :contract => @contract }
