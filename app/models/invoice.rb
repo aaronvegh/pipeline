@@ -79,16 +79,18 @@ class Invoice < ActiveRecord::Base
     invoices = Invoice.invoices_for_year(year)
     invoice_total = 0
     invoices.each do |i|
-      invoice_total += i.invoice_total
+      invoice_total = i.invoice_total + i.invoice_total
     end
+    return invoice_total
   end
   
   def Invoice.total_for_year_owing(year)
     invoices = Invoice.invoices_for_year(year)
     invoice_total = 0
     invoices.each do |i|
-      invoice_total += Payment.balance_outstanding(i)
+      invoice_total = invoice_total + Payment.balance_outstanding(i)
     end
+    return invoice_total
   end
   
   def Invoice.invoices_60plus
