@@ -75,6 +75,22 @@ class Invoice < ActiveRecord::Base
     return invoice_total
   end
   
+  def Invoice.total_for_year(year)
+    invoices = Invoice.invoices_for_year(year)
+    invoice_total = 0
+    invoices.each do |i|
+      invoice_total += i.invoice_total
+    end
+  end
+  
+  def Invoice.total_for_year_owing(year)
+    invoices = Invoice.invoices_for_year(year)
+    invoice_total = 0
+    invoices.each do |i|
+      invoice_total += Payment.balance_outstanding(i)
+    end
+  end
+  
   def Invoice.invoices_60plus
     invoices = Invoice.find_all_by_status("pending")
     returning_invoices = Array.new
