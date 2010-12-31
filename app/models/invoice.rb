@@ -79,7 +79,7 @@ class Invoice < ActiveRecord::Base
     invoices = Invoice.invoices_for_year(year)
     invoice_total = 0
     invoices.each do |i|
-      invoice_total = i.invoice_total + i.invoice_total
+      invoice_total = invoice_total + i.invoice_total
     end
     return invoice_total
   end
