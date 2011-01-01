@@ -3,7 +3,7 @@
 	<div id="box66_content" class="invoice">
 		<h1>Invoices</h1>
 		<p class="new_link"><%= link_to "[+] New Invoice", {:controller=>"invoices", :action=>"new"}, :popup=>['Create new invoice', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
-		<% if @invoices %>
+		<% if @invoices.size > 0 %>
 		<table>	
 			<tr>
 				<th width="70">Invoice</th>
