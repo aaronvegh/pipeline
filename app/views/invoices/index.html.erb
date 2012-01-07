@@ -2,7 +2,7 @@
 	<div id="box66_top" class="invoice"></div>
 	<div id="box66_content" class="invoice">
 		<h1><%= @year %> Invoices</h1>
-		<p class="new_link"><%= link_to "2010", :controller=>"invoices", :action=>"index", :year=>"2010" %> <%= link_to "[+] New Invoice", {:controller=>"invoices", :action=>"new"}, :popup=>['Create new invoice', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
+		<p class="new_link"><%= link_to "2011", :controller=>"invoices", :action=>"index", :year=>"2011" %> | <%= link_to "2010", :controller=>"invoices", :action=>"index", :year=>"2010" %> <%= link_to "[+] New Invoice", {:controller=>"invoices", :action=>"new"}, :popup=>['Create new invoice', 'height=500,width=600,resizable=yes,scrollbars=yes'] %></p>
 		<% if @invoices.size > 0 %>
 		<table>	
 			<tr>
