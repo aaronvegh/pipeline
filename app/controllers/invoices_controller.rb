@@ -89,7 +89,7 @@ class InvoicesController < ApplicationController
   # determine payment status
   total = @i.invoice_total
   payments = Payment.payments_total(@i)
-  if total > payments
+  if total.round(2) > payments
     @i.status = "pending"
   else
     @i.status = "paid"
